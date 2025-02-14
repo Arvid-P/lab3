@@ -4,6 +4,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import lab2.Car;
 import lab2.Volvo240;
+import lab2.Scania;
+import lab2.Saab95;
+import lab2.Carcarrier;
+import lab2.Mechanic;
 
 
 /*
@@ -33,6 +37,8 @@ public class CarController {
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Scania());
+        cc.cars.add(new Saab95());
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -48,6 +54,7 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
                     car.move();
+                    car.checkbound();
                     int x = (int) Math.round(car.getXPos());
                     int y = (int) Math.round(car.getYPos());
                     frame.drawPanel.moveit(x, y);
@@ -70,4 +77,18 @@ public class CarController {
             car.brake(brake);
         }
     }
+
+    void startEngine() {
+        for (Car car : cars) {
+            car.startEngine();
+        }
+    }
+
+    void stopEngine() {
+        for (Car car : cars) {
+            car.stopEngine();
+        }
+    }
+
+
 }

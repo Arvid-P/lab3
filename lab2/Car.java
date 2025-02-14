@@ -11,7 +11,7 @@ public abstract class Car implements Movable {
     protected final String modelName; // The car model name
     private double xPos;
     private double yPos;
-    private String direction = "North"; //predetermined direction of the car
+    private String direction = "West"; //predetermined direction of the car
 
     protected Car(int nrDoors, double enginePower, Color color, String modelName) {
 
@@ -131,6 +131,24 @@ public abstract class Car implements Movable {
         }
     }
 
+    public void checkbound(){
+
+        if(xPos < 0){
+            stopEngine();
+            turnRight();
+            turnRight();
+            startEngine();
+            setXPos(Math.max(xPos,0));
+        }
+        if (xPos > 700){
+            stopEngine();
+            turnRight();
+            turnRight();
+            startEngine();
+            setXPos(Math.min(xPos,700));
+        }
+    }
+
     public double getXPos(){
         return xPos;
     }
@@ -138,11 +156,11 @@ public abstract class Car implements Movable {
         return yPos;
     }
 
-    protected void setXPos(double x) {
+    public void setXPos(double x) {
         xPos = x;
     }
 
-    protected void setYPos(double y) {
+    public void setYPos(double y) {
         yPos = y;
     }
 
