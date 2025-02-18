@@ -14,7 +14,7 @@ public class Volvo240 extends Car{
         return enginePower * 0.01 * trimFactor;
     }
 
-    public boolean isLoadable() {
+    protected boolean isLoadable() {
         return true;
     }
 
@@ -22,4 +22,7 @@ public class Volvo240 extends Car{
         return true;
     }
 
+    public boolean hasTurbo() { return false;}
+
+    public boolean hasBed() {return false;}
 }

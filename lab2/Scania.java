@@ -58,6 +58,10 @@ public class Scania extends Car {
         }
     }
 
+    public boolean hasTurbo() { return false;}
+
+    public boolean hasBed() {return false;}
+
 }
 
 

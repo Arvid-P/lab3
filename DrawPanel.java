@@ -1,3 +1,8 @@
+import lab2.Saab95;
+import lab2.Scania;
+import lab2.Volvo240;
+import lab2.Car;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,9 +29,20 @@ public class DrawPanel extends JPanel{
     Point saab95Point = new Point(0,200);
 
     // TODO: Make this general for all cars
-    void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+    void moveit(Car car, int x, int y){
+        if (car.getClass() == Saab95.class) {
+            saab95Point.x = x;
+            saab95Point.y = y;
+        }
+        else if (car.getClass() == Scania.class) {
+            scaniaPoint.x = x;
+            scaniaPoint.y = y;
+        }
+        else if (car.getClass() == Volvo240.class) {
+            volvoPoint.x = x;
+            volvoPoint.y = y;
+        }
+
 
     }
 

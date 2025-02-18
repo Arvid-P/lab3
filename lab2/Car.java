@@ -12,6 +12,7 @@ public abstract class Car implements Movable {
     private double xPos;
     private double yPos;
     private String direction = "West"; //predetermined direction of the car
+    private boolean carHasTurbo;
 
     protected Car(int nrDoors, double enginePower, Color color, String modelName) {
 
@@ -168,5 +169,8 @@ public abstract class Car implements Movable {
 
     protected abstract boolean startCondition();
 
+    protected abstract boolean hasTurbo();
+
+    protected abstract boolean hasBed();
 
 }

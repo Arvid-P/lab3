@@ -61,7 +61,7 @@ public class Carcarrier extends Car {
 
     public Car[] getLoad() {return load;}
 
-    public boolean isLoadable() {
+    protected boolean isLoadable() {
         return false;
     }
 
@@ -84,5 +84,7 @@ public class Carcarrier extends Car {
             }
         }
     }
+    public boolean hasTurbo() { return false;}
 
+    public boolean hasBed() {return true;}
 }

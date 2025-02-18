@@ -8,6 +8,7 @@ public class Saab95 extends Car{
     private boolean turboOn;
 
 
+
     public Saab95(){
         super(2, 125, Color.red, "Saab95");
 	    turboOn = false;
@@ -27,7 +28,7 @@ public class Saab95 extends Car{
         return enginePower * 0.01 * turbo;
     }
 
-    public boolean isLoadable() {
+    protected boolean isLoadable() {
         return true;
     }
 
@@ -35,4 +36,7 @@ public class Saab95 extends Car{
         return true;
     }
 
+    public boolean hasTurbo() { return true;}
+
+    public boolean hasBed() {return false;}
 }

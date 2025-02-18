@@ -11,9 +11,9 @@ import lab2.Mechanic;
 
 
 /*
-* This class represents the Controller part in the MVC pattern.
-* It's responsibilities is to listen to the View and responds in a appropriate manner by
-* modifying the model state and the updating the view.
+ * This class represents the Controller part in the MVC pattern.
+ * It's responsibilities is to listen to the View and responds in a appropriate manner by
+ * modifying the model state and the updating the view.
  */
 
 public class CarController {
@@ -40,6 +40,13 @@ public class CarController {
         cc.cars.add(new Scania());
         cc.cars.add(new Saab95());
 
+        double y = 0;
+        for(Car car : cc.cars){
+            car.setYPos(y);
+            y += 100;
+        }
+
+
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
@@ -48,18 +55,18 @@ public class CarController {
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+     * view to update its images. Change this method to your needs.
+     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
-                    car.move();
-                    car.checkbound();
-                    int x = (int) Math.round(car.getXPos());
-                    int y = (int) Math.round(car.getYPos());
-                    frame.drawPanel.moveit(x, y);
-                    // repaint() calls the paintComponent method of the panel
-                    frame.drawPanel.repaint();
+                car.move();
+                car.checkbound();
+                int x = (int) Math.round(car.getXPos());
+                int y = (int) Math.round(car.getYPos());
+                frame.drawPanel.moveit(car, x, y);
+                // repaint() calls the paintComponent method of the panel
+                frame.drawPanel.repaint();
             }
         }
     }
@@ -88,6 +95,30 @@ public class CarController {
         for (Car car : cars) {
             car.stopEngine();
         }
+    }
+
+    void saabTurboOn() {
+        for(int i=0; i<cars.size(); i++){
+            if (cars.get(i).getClass() == Saab95.class) {
+                cars.get(i).setTurboOn();
+            }
+        }
+    }
+
+    void saabTurboOff() {
+
+    }
+
+    void liftBed() {
+        for (Car car : cars) {
+            if (car.getClass() == Scania.class) {
+
+            }
+        }
+    }
+
+    void lowerBed() {
+
     }
 
 
