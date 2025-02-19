@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ConvolveOp;
 import java.util.ArrayList;
 import lab2.Car;
 import lab2.Volvo240;
@@ -30,6 +31,7 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
+    private static Mechanic<Volvo240> volvoMechanic;
     //methods:
 
     public static void main(String[] args) {
@@ -40,11 +42,18 @@ public class CarController {
         cc.cars.add(new Scania());
         cc.cars.add(new Saab95());
 
+        volvoMechanic = new Mechanic<>(3);
+
         double y = 0;
         for(Car car : cc.cars){
             car.setYPos(y);
             y += 100;
         }
+
+        volvoMechanic.setXPos(300);
+        volvoMechanic.setYPos(0);
+
+
 
 
         // Start a new view and send a reference of self
@@ -60,8 +69,8 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
+                checkbound(car, volvoMechanic);
                 car.move();
-                car.checkbound();
                 int x = (int) Math.round(car.getXPos());
                 int y = (int) Math.round(car.getYPos());
                 frame.drawPanel.moveit(car, x, y);
@@ -98,28 +107,67 @@ public class CarController {
     }
 
     void saabTurboOn() {
-        for(int i=0; i<cars.size(); i++){
-            if (cars.get(i).getClass() == Saab95.class) {
-                cars.get(i).setTurboOn();
+        for (Car car : cars) {
+            if(car instanceof Saab95){
+                ((Saab95) car).setTurboOn();
+
             }
         }
     }
 
     void saabTurboOff() {
-
+        for (Car car : cars) {
+            if(car instanceof Saab95){
+                ((Saab95) car).setTurboOff();
+            }
+        }
     }
 
     void liftBed() {
         for (Car car : cars) {
-            if (car.getClass() == Scania.class) {
-
+            if (car instanceof Scania) {
+                ((Scania) car).setRampUp();
             }
         }
     }
 
     void lowerBed() {
-
+        for (Car car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).setRampDown();
+            }
+        }
     }
 
+    public void checkbound(Car car, Mechanic<Volvo240> mechanic){
+
+        if(car.getXPos() < 0){
+            car.stopEngine();
+            car.turnRight();
+            car.turnRight();
+            car.startEngine();
+            car.setXPos(Math.max(car.getXPos(),0));
+        }
+        if (car.getXPos() > 700){
+            car.stopEngine();
+            car.turnRight();
+            car.turnRight();
+            car.startEngine();
+            car.setXPos(Math.min(car.getXPos(),700));
+        }
+
+        if (car.getXPos() >= mechanic.getXPos()
+                && car.getXPos() <= mechanic.getXPos() + 100
+                && car.getYPos() >= mechanic.getYPos()
+                && car.getYPos() <= mechanic.getYPos() + 100
+                && car instanceof Volvo240) {
+            mechanic.addCar((Volvo240) car);
+            car.setMechanicState(true);
+        }
+
+        if (car.getMechanicState()) {
+            car.setCurrentSpeed(0);
+        }
+    }
 
 }

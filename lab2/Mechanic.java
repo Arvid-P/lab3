@@ -6,6 +6,9 @@ public class Mechanic<T extends Car> {
     private int carCapacity;
     private ArrayList<T> cars;
 
+    private double xPos;
+    private double yPos;
+
     public Mechanic(int carCapacity) {
         this.carCapacity = carCapacity;
         this.cars = new ArrayList<>();
@@ -24,5 +27,25 @@ public class Mechanic<T extends Car> {
 
     public ArrayList<T> getCars(){return cars;}
 
+    public void setXPos(double xPos) {
+        this.xPos = xPos;
+    }
+    public void setYPos(double yPos) {
+        this.yPos = yPos;
+    }
+    public double getXPos() {
+        return xPos;
+    }
+    public double getYPos() {
+        return yPos;
+    }
 
+    public void checkBounds(T car) {
+        if (car.getXPos() >= xPos
+                && car.getXPos() <= xPos + 100
+                && car.getYPos() >= yPos
+                && car.getYPos() <= yPos + 100) {
+            this.addCar(car);
+        }
+    }
 }

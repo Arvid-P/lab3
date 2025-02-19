@@ -13,6 +13,7 @@ public abstract class Car implements Movable {
     private double yPos;
     private String direction = "West"; //predetermined direction of the car
     private boolean carHasTurbo;
+    private boolean carInmechanic;
 
     protected Car(int nrDoors, double enginePower, Color color, String modelName) {
 
@@ -38,6 +39,10 @@ public abstract class Car implements Movable {
 
     public Color getColor(){
         return color;
+    }
+
+    public void setCurrentSpeed(double currentSpeed){
+        this.currentSpeed = currentSpeed;
     }
 
     public void setColor(Color clr){
@@ -67,7 +72,7 @@ public abstract class Car implements Movable {
 
     // IncrementSpeed is called when the argument is between the interval 0 and 1
     public void gas(double amount){
-        if (amount <= 1 && amount >= 0){
+        if (amount <= 1 && amount >= 0 && currentSpeed >= 0.1) {
             incrementSpeed(amount);
         }
     }
@@ -132,24 +137,6 @@ public abstract class Car implements Movable {
         }
     }
 
-    public void checkbound(){
-
-        if(xPos < 0){
-            stopEngine();
-            turnRight();
-            turnRight();
-            startEngine();
-            setXPos(Math.max(xPos,0));
-        }
-        if (xPos > 700){
-            stopEngine();
-            turnRight();
-            turnRight();
-            startEngine();
-            setXPos(Math.min(xPos,700));
-        }
-    }
-
     public double getXPos(){
         return xPos;
     }
@@ -172,5 +159,12 @@ public abstract class Car implements Movable {
     protected abstract boolean hasTurbo();
 
     protected abstract boolean hasBed();
+
+    public void setMechanicState(boolean state) {
+        carInmechanic = state;
+    }
+    public boolean getMechanicState(){
+        return carInmechanic;
+    }
 
 }
