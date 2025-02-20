@@ -84,7 +84,5 @@ public class Carcarrier extends Car {
             }
         }
     }
-    public boolean hasTurbo() { return false;}
-
-    public boolean hasBed() {return true;}
+    
 }

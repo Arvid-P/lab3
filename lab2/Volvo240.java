@@ -22,7 +22,4 @@ public class Volvo240 extends Car{
         return true;
     }
 
-    public boolean hasTurbo() { return false;}
-
-    public boolean hasBed() {return false;}
 }

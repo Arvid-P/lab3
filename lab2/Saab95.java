@@ -36,7 +36,4 @@ public class Saab95 extends Car{
         return true;
     }
 
-    public boolean hasTurbo() { return true;}
-
-    public boolean hasBed() {return false;}
 }

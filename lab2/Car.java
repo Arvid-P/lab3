@@ -156,10 +156,6 @@ public abstract class Car implements Movable {
 
     protected abstract boolean startCondition();
 
-    protected abstract boolean hasTurbo();
-
-    protected abstract boolean hasBed();
-
     public void setMechanicState(boolean state) {
         carInmechanic = state;
     }
