@@ -40,12 +40,4 @@ public class Mechanic<T extends Car> {
         return yPos;
     }
 
-    public void checkBounds(T car) {
-        if (car.getXPos() >= xPos
-                && car.getXPos() <= xPos + 100
-                && car.getYPos() >= yPos
-                && car.getYPos() <= yPos + 100) {
-            this.addCar(car);
-        }
-    }
 }
