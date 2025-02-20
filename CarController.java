@@ -31,7 +31,7 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
 
-    private static Mechanic<Volvo240> volvoMechanic;
+    private Mechanic<Volvo240> volvoMechanic;
     //methods:
 
     public static void main(String[] args) {
@@ -42,7 +42,7 @@ public class CarController {
         cc.cars.add(new Scania());
         cc.cars.add(new Saab95());
 
-        volvoMechanic = new Mechanic<>(3);
+        cc.volvoMechanic = new Mechanic<>(3);
 
         double y = 0;
         for(Car car : cc.cars){
@@ -50,8 +50,8 @@ public class CarController {
             y += 100;
         }
 
-        volvoMechanic.setXPos(300);
-        volvoMechanic.setYPos(0);
+        cc.volvoMechanic.setXPos(300);
+        cc.volvoMechanic.setYPos(0);
 
 
 
