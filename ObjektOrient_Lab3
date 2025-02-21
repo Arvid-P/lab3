@@ -1,0 +1,42 @@
+Uppgift 3:
+
+Ansvarsområden:
+
+Movable - Gränssnittet styr position och riktning.
+
+Car - Klass som hanterar hastighet, position, design på bilen, om bilen är hos mekanikern, om bilen är lagringsbar.
+
+Mechanic - Subklass till Car som lagrar bilar, har en position. I lab3 lagrar den endast volvobilar.
+
+Scania - Subklass till Car som har en ramp som kan styras upp och ner.
+
+Volvo240 - Subklass till Car som har en trimmad motor.
+
+Saab95 - Subklass till Car som har en turbo.
+
+CarCarrier - Subklass till Car som lagrar bilar.
+
+CarController - Klass som styr funktioner till knappar samt bilklasser.
+
+TimerListener - Nästad klass som uppdaterar bilarnas position samt simulatorn genom att loopa.
+
+CarView - Klass som ritar GUI.
+
+DrawPanel - Ritar det som finns i simulatorn, t.ex. animationer samt bildernas position.
+_______________________________
+Vilka behöver förändras?:
+
+Car bör delas upp i flera klasser som hanterar olika ansvarsområden, t.ex. hastighet, design, position.
+
+_______________________________
+Dekomposition:
+
+Dela upp checkbound if-loopar i CarController i mer specifika metoder. I CarView skulle initComponents kunna delas upp i mer speifika metoder, t.ex. en för att lägga till funktioner till knapparna, en för att rita simulatorn och en för att lägga till knapparna.
+
+
+Refaktoriseringsplan:
+
+ - Dela upp checkbound till fyra olika metoder
+ - Dela upp initComponents till tre olika metoder
+ - Dela upp Car-klassen i flera olika komponenter via gränssnitt
+ - Ta bort tvåvägsberoende mellan CarView och CarController via gränssnitt
